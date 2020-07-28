@@ -4,4 +4,4 @@ LABEL maintainer="Sebastian Ramirez <tiangolo@gmail.com>"
 
 RUN pip install --no-cache-dir fastapi
 
-COPY ./bias-webapi /app
+COPY ./taketwo-webapi /app
