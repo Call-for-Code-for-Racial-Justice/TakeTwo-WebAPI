@@ -55,6 +55,11 @@ def read_root():
     return open("template.html").read()
 
 
+@app.get("/mark")
+def get_marks():
+    return list(map(lambda doc: doc, db))
+
+
 @app.post("/mark")
 def save_mark(item: Flagged):
     data = item.dict()
@@ -67,9 +72,12 @@ def save_mark(item: Flagged):
         return data
 
 
-@app.get("/mark")
-def get_marks():
-    return list(map(lambda doc: doc, db))
+@app.put("/mark/{_id}")
+def update_mark(_id: str, item: Flagged):
+    my_document = db[_id]
+    my_document["category"] = item.category
+    my_document.save()
+    return {"status": "success"}
 
 
 @app.delete("/mark")
@@ -77,6 +85,15 @@ def delete_mark(_id: str):
     my_document = db[_id]
     my_document.delete()
     return {"status": "success"}
+
+if os.path.isfile("vcap-local.json"):
+    @app.put("/clear_all")
+    def clear_all(confirm: str):
+        if confirm == "yes":
+            for doc in db:
+                doc.delete()
+            return {"status": "success"}
+        return {"status": "failed"}
 
 
 @app.get("/categories")
@@ -116,9 +133,9 @@ def read_categories():
 @app.put("/analyse")
 def analyse_text(text: Text):
     res = []
-    for phrase in db:
-        if phrase in text.content:
-            res.append(phrase)
+    for doc in db:
+        if doc["flagged_string"] in text.content:
+            res.append({"flag" : doc["flagged_string"], "category" : doc["category"]})
     return {"biased": res}
 
 
