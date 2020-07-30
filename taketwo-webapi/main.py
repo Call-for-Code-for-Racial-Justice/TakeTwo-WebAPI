@@ -1,5 +1,5 @@
 import os
-os.system("ls -la")
+
 import json
 
 from typing import Optional
