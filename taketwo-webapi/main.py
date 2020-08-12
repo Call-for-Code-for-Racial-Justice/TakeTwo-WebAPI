@@ -16,7 +16,7 @@ from cloudant.client import Cloudant
 
 app = FastAPI()
 
-
+clear_token = os.getenv("CLEAR_TOKEN")
 db_name = os.getenv("DBNAME")
 client = None
 db = None
@@ -89,7 +89,7 @@ def delete_mark(_id: str):
 if os.path.isfile("vcap-local.json"):
     @app.put("/clear_all")
     def clear_all(confirm: str):
-        if confirm == "yes":
+        if confirm == clear_token:
             for doc in db:
                 doc.delete()
             return {"status": "success"}
