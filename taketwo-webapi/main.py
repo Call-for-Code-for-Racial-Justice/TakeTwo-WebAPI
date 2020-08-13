@@ -104,7 +104,7 @@ def read_categories():
         {
             "name": "appropriation", 
             "colour": "#648FFF", 
-            "description": "description for appropriation"
+            "description": "To adopt or claim elements of one or more cultures to which you do not belong, consequently causing offence to members of said culture(s) or otherwise achieving some sort of personal gain at the expense of other members of the culture(s)."
         },
         {
             "name": "stereotyping",
@@ -112,19 +112,24 @@ def read_categories():
             "description": "description for stereotyping",
         },
         {
-            "name": "deflection",
+            "name": "under-representation",
             "colour": "#DC267F",
-            "description": "description for deflection",
+            "description": "To have Insufficient or disproportionately low representation of Black, Indigenous, People of Color (BIPOC) individuals, for example in mediums such as media and TV adverts.",
         },
         {
             "name": "gaslighting", 
             "colour": "#FE6100", 
-            "description": "description for gaslighting"
+            "description": "To use tactics, whether by a person or entity, in order to gain more power by making a victim question their reality.  To deny or refuse to see racial bias, which may also include the act of convincing a person that an event/slur/idea is not racist or not as bad as one claims it to be through means of psychological manipulation."
+        },
+        {
+            "name": "racial slur",
+            "colour": "#FFB000",
+            "description": "To insult, or use offensive or hurtful language designed to degrade a person because of their race or culture. This is intentional use of words or phrases to speak of or to members of ethnical groups in a derogatory manor. ",
         },
         {
             "name": "othering", 
-            "colour": "#FFB000", 
-            "description": "description for othering"
+            "colour": "##5DDB2B", 
+            "description": "To label and define a person/group as someone who belongs to a 'socially subordinate' category of society. The practice of othering persons means to use the characteristics of a person's race to exclude and displace such person from the 'superior' social group and separate them from what is classed as normal."
         },
     ]
     # fmt: on

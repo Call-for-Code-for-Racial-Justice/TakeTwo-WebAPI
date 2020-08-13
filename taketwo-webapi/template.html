@@ -65,7 +65,7 @@
                 .then(function (response) {
                     // handle success
                     response.data.biased.forEach(function (flag) {
-                        text = text.replace(flag.flag, '<span style="background-color:' + categories[flag.category].colour + '" data-toggle="tooltip" data-placement="top" title="' + flag.category + '">' + flag.flag + '</span>')
+                        text = text.replace(flag.flag, '<span style="background-color:' + categories[flag.category].colour + '" data-toggle="tooltip" data-placement="top" data-html="true" title="<h3>' + flag.category + "</h3><em>" + categories[flag.category].description + '</em>">' + flag.flag + '</span>')
                     })
                     document.getElementById("content").innerHTML = text;
                     $(function () {
