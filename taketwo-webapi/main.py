@@ -43,6 +43,7 @@ class Flagged(BaseModel):
     user_id: str
     flagged_string: str
     category: str
+    info: Optional[str]
     url: str
 
 
@@ -109,7 +110,7 @@ def read_categories():
         {
             "name": "stereotyping",
             "colour": "#785EF0",
-            "description": "description for stereotyping",
+            "description": "To perpetuate a system of beliefs about superficial characteristics of members of a given ethnic group or nationality, their status, society and cultural norms.",
         },
         {
             "name": "under-representation",
@@ -128,7 +129,7 @@ def read_categories():
         },
         {
             "name": "othering", 
-            "colour": "##5DDB2B", 
+            "colour": "#5DDB2B", 
             "description": "To label and define a person/group as someone who belongs to a 'socially subordinate' category of society. The practice of othering persons means to use the characteristics of a person's race to exclude and displace such person from the 'superior' social group and separate them from what is classed as normal."
         },
     ]
@@ -140,7 +141,7 @@ def analyse_text(text: Text):
     res = []
     for doc in db:
         if doc["flagged_string"] in text.content:
-            res.append({"flag" : doc["flagged_string"], "category" : doc["category"]})
+            res.append({"flag" : doc["flagged_string"], "category" : doc["category"], "info" : doc["info"]})
     return {"biased": res}
 
 
