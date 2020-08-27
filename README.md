@@ -55,7 +55,7 @@ The API is used to fetch the defined categories of racial bias and serve them in
 - Designers: Naagma Timakondu, Sbusiso Mkhombe
 - Tester: Merlina Escorcia
 - Generalist: Ashley West, Jashu Gorsia, Yolanda Rabun
-- Data Scientists: Naoki Abe, AlaytIssak
+- Data Scientists: Naoki Abe, Alayt Issak
 - Lead Developer: Johanna Saladas
 - Architect: Steve Uniack
 - Offering Manager: Iain  McCombe
