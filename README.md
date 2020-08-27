@@ -59,3 +59,5 @@ The API is used to fetch the defined categories of racial bias and serve them in
 - Lead Developer: Johanna Saladas
 - Architect: Steve Uniack
 - Offering Manager: Iain  McCombe
+
+### Contributing
