@@ -32,6 +32,14 @@ There are a number of other repositories related to this project:
 
 </br>
 
+### Take Two Architecture
+
+This API (highlighted in the following diagram) is part of the Call For Code Take Two MVP 1 delivery. This API is used to capture the data highlighted by users through the Take 2 Chrome extension tool.
+
+![](images/architecture-highlighted.png)
+
+</br>
+
 ### Description of Take Two API
 
 This API is part of the Call For Code Take Two project. This API is used to capture the data crowdsourced by our contributors through the [Take 2 Chrome extension tool](https://github.com/embrace-call-for-code/taketwo-marker-chromeextension).
@@ -40,13 +48,6 @@ The API is used to fetch the defined categories of racial bias and serve them in
 
 </br>
 
-### Architecture
-
-This API (highlighted in the following diagram) is part of the Call For Code Take Two MVP 1 delivery. This API is used to capture the data highlighted by users through the Take 2 Chrome extension tool.
-
-![](images/architecture-highlighted.png)
-
-</br>
 
 ### Authors
 
