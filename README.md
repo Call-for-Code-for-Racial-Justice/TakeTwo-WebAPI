@@ -6,8 +6,6 @@ Technology has the power to drive action. And right now, a call to action is nee
 
 We recognize technology alone cannot fix hundreds of years of racial injustice and inequality, but when we put it in the hands of the Black community and their supporters, technology can begin to bridge a gap. To start a dialogue. To identify areas where technology can help pave a road to progress.
 
-This project is an effort to utilize technology to analyze, inform, and develop policy to reform the workplace, products, public safety, and legislation.
-
 This is one of three open source projects underway as part of the [Call for Code Emb(race) Spot Challenge](https://github.com/topics/embrace-call-for-code) led by contributors from IBM and Red Hat.
 
 
@@ -23,13 +21,13 @@ This repo is part of the [Embrace: Diverse Representation](https://github.com/Ca
 
 2. A social media user can understand the historical and societal context of racial bias and cultural appropriation reflected in their posts in real time.
 
-We have identified the following issues currently faced by content platforms:
+We have identified the following issues currently faced by **content platforms**:
 
 - Racially biased content created due to lack of context and information.
 - The possibility to perpetuate bias through content.
 - Offensive and hurtful language that can cause others pain. 
 
-This project aims to facilitate content platforms to:
+This project aims to facilitate **content platforms** to:
 
 - Flag words and phrases that may contain racial bias.
 - Categorize the type of racial bias that may be present.
@@ -158,6 +156,12 @@ For an overview of the available endpoints navigate to "https://localhost:8000/d
 ### Contributing 
 
 We welcome contributions! For details on how to contributing please read the CONTRIBUTING.md file in this repo.
+
+This project is still very much a work in progress, however our hope for the future is that this is a step towards a more informed media culture that is more aware of racial bias in media content. We hope this can be built out so that it can be used in a range of areas; news, social media, forums, code etc.
+
+We also hope to expand the project to enable detection of racial bias in audio and video in the future.
+
+We hope you will help us in this open source community effort!
 
 ## Authors
 
