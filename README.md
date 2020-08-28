@@ -16,19 +16,41 @@ This is one of three open source projects underway as part of the [Call for Code
 
 *Bias is learned and perpetuated in different ways (e.g. societal beliefs, misrepresentation, ignorance) that consequently create inequitable outcomes across all spheres of life.*
 
+We have identified the following issues currently faced by content platforms:
+
+- Racially biased content created due to lack of context and information.
+- The possibility to perpetuate bias through content.
+- Offensive and hurtful language that can cause others pain. 
+
+This project aims to facilitate content platforms to:
+
+- Flag words and phrases that may contain racial bias.
+- Categorize the type of racial bias that may be present.
+- Amend text to reduce the possibility of posting offensive content.
+- Become more aware and improve representation in their future content.
+- Become a more inclusive platform.
+
+
 </br>
 
 ## Description of the Take Two Project
 
-The Take Two solution provides a quick and simple tool for **content creators** to eliminate racial bias (both overt and subtle) from their content. 
+The Take Two solution provides a quick and simple tool for **content platforms** to detect and eliminate racial bias (both overt and subtle) from their content. 
 
-This is underpinned by a crowd-sourced database of words and phrases that are deemed racially biased. These phrases are categorized in order to train an AI model on the significance of the context in which the language was used. Contributors to the project can be part of the crowdsourcing process by installing a browser extension. This API repo is part of the data capture process, which is used for modelling. 
+This API is underpinned by a crowd-sourced database of words and phrases that are deemed racially biased. These phrases are categorized in order to train an AI model on the significance of the context in which the language was used. Contributors to the project can be part of the crowdsourcing process by installing a browser extension. This API repo is part of the data capture process, which is used for modelling. 
 
 There are a number of other repositories related to this project:
 
 - [Take Two Data Science](https://github.com/embrace-call-for-code/taketwo-datascience) - Contains data science work for building and training the model.
 - [Take Two Marker Chrome Extenstion](https://github.com/embrace-call-for-code/taketwo-marker-chromeextension) - Code for the Chrome extension used to crowdsource data for training the ML model. 
 
+</br>
+
+## Technology Used
+
+This API is built using [Python](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), and [Docker](https://www.docker.com) (if running on a Kubernetes cluster).
+
+The data is sent to a backend database, in this example Cloudant, however you could also use CouchDB. 
 
 </br>
 
