@@ -1,4 +1,4 @@
-# Take Two API
+![](images/logowhiteorange.png)
 
 ## Emb(race): Diverse Representation
 
@@ -51,6 +51,8 @@ There are a number of other repositories related to this project:
 This API is built using [Python](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), and [Docker](https://www.docker.com) (if running on a Kubernetes cluster).
 
 The data is sent to a backend database, in this example Cloudant, however you could also use CouchDB. 
+
+There is a front-end HTML page that serves and example text editor. 
 
 </br>
 
