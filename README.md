@@ -64,15 +64,22 @@ Install the packages needed from the requirements.txt file:
 
 ```pip install requirements.txt```
 
-To run the API code:
+Navigate to the folder which contains the API code:
 
 ``cd taketwo-api``
+
+Run ``main.py`:
 
 ```uvicorn main:app --reload```
 
 
 ### Deploy to Kubernetes
 
+
+When the API is running, the main url will show an example text editor, which can be used to make requests to the backend data. You can type in the text box and then press check. 
+
+
+![](images/api-example.png)
 
 ### Authors
 
