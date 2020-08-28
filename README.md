@@ -148,6 +148,10 @@ When the API is running, the main url will show an example text editor, which ca
 
 For an overview of the available endpoints navigate to "https://localhost:8000/docs".
 
+### Contributing 
+
+We welcome contributions! For details on how to contributing please read the CONTRIBUTING.md file in this repo.
+
 ## Authors
 
 - User Researcher: Anna Rodriguez
@@ -159,5 +163,3 @@ For an overview of the available endpoints navigate to "https://localhost:8000/d
 - Architect: Steve Uniack
 - Offering Manager: Iain  McCombe
 
-### Contributing
-See CONTRIBUTING.md
