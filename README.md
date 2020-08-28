@@ -52,7 +52,7 @@ The database contains the following fields:
 
 - "_id": Database field (optional)
 - "_rev": Database field
-- "user_id": 
+- "user_id": *The user ID*
 - "flagged_string": *The word of phrase that has been highlighted by the user.*
 - "category": *The category that has been selected for the type of racial bias present in the highlighted word or phrase.*
 - "info": *Additional information, context description provided by the user.* (optional)
@@ -94,7 +94,7 @@ Navigate to the folder which contains the API code:
 
 ``cd taketwo-api``
 
-Run ``main.py`:
+Run the Python api code:
 
 ```uvicorn main:app --reload```
 
