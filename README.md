@@ -10,11 +10,18 @@ This project is an effort to utilize technology to analyze, inform, and develop 
 
 This is one of three open source projects underway as part of the [Call for Code Emb(race) Spot Challenge](https://github.com/topics/embrace-call-for-code) led by contributors from IBM and Red Hat.
 
+
 </br>
 
 ### Problem Statement
 
 *Bias is learned and perpetuated in different ways (e.g. societal beliefs, misrepresentation, ignorance) that consequently create inequitable outcomes across all spheres of life.*
+
+This repo is part of the [Embrace: Diverse Representation](https://github.com/Call-for-Code/Embrace-Diverse-Representation) stream and our focus is on problem statement 3. We decided to focus on the following two predefined hills:
+
+1. A media content editor (e.g., audio, gaming, movies, tv, comics, news, publications) can incorporate bias detection and remediation into their creative process to reduce racial bias and improve representation to Gen Z.
+
+2. A social media user can understand the historical and societal context of racial bias and cultural appropriation reflected in their posts in real time.
 
 We have identified the following issues currently faced by content platforms:
 
