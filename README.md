@@ -1,4 +1,4 @@
-![](images/logowhiteorange.png)
+![](images/logoblack.png)
 
 ## Emb(race): Diverse Representation
 
