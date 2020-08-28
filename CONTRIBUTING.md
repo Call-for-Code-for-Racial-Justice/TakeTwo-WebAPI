@@ -1,4 +1,4 @@
-# Contributing To Take Two
+# Contributing To TakeTwo
 
 It's great you have found our repo! We would love your input and welcome contributions to the project. We have tried to make it as easy as possible for you to get involved by:
 

@@ -38,16 +38,16 @@ This project aims to facilitate **content platforms** to:
 
 </br>
 
-## Description of the Take Two Project
+## Description of the TakeTwo Project
 
-The Take Two solution provides a quick and simple tool for **content platforms** to detect and eliminate racial bias (both overt and subtle) from their content. 
+The TakeTwo solution provides a quick and simple tool for **content platforms** to detect and eliminate racial bias (both overt and subtle) from their content. 
 
 This API is underpinned by a crowd-sourced database of words and phrases that are deemed racially biased. These phrases are categorized in order to train an AI model on the significance of the context in which the language was used. Contributors to the project can be part of the crowdsourcing process by installing a browser extension. This API repo is part of the data capture process, which is used for modelling. 
 
 There are a number of other repositories related to this project:
 
-- [Take Two Data Science](https://github.com/embrace-call-for-code/taketwo-datascience) - Contains data science work for building and training the model.
-- [Take Two Marker Chrome Extenstion](https://github.com/embrace-call-for-code/taketwo-marker-chromeextension) - Code for the Chrome extension used to crowdsource data for training the ML model. 
+- [TakeTwo Data Science](https://github.com/embrace-call-for-code/taketwo-datascience) - Contains data science work for building and training the model.
+- [TakeTwo Marker Chrome Extenstion](https://github.com/embrace-call-for-code/taketwo-marker-chromeextension) - Code for the Chrome extension used to crowdsource data for training the ML model. 
 
 </br>
 
@@ -61,17 +61,17 @@ There is a front-end HTML page that serves and example text editor.
 
 </br>
 
-### Take Two Architecture
+### TakeTwo Architecture
 
-This API (highlighted in the following diagram) is part of the Call For Code Take Two Project. This API is used to capture the data highlighted by users through the Take 2 Chrome extension tool.
+This API (highlighted in the following diagram) is part of the Call For Code TakeTwo Project. This API is used to capture the data highlighted by users through the Take 2 Chrome extension tool.
 
 ![](images/architecture-highlighted.png)
 
 </br>
 
-### Description of Take Two API
+### Description of TakeTwo API
 
-This API is part of the Call For Code Take Two project. This API is used to capture the data crowdsourced by our contributors through the [Take 2 Chrome extension tool](https://github.com/embrace-call-for-code/taketwo-marker-chromeextension).
+This API is part of the Call For Code TakeTwo project. This API is used to capture the data crowdsourced by our contributors through the [Take 2 Chrome extension tool](https://github.com/embrace-call-for-code/taketwo-marker-chromeextension).
 
 The API is used to fetch the defined categories of racial bias and serve them in the extension tool. It also captures the data highlighted by contributors and posts it to a backend database. This data is used to train an [ML model](https://github.com/embrace-call-for-code/taketwo-datascience) that can detect racial bias. 
 
@@ -99,7 +99,7 @@ This project has defined a number of categories of racial bias, which are used b
 - Racial Slur
 - Othering
 
-Definitions of these categories can be found on the Take Two webpage. 
+Definitions of these categories can be found on the TakeTwo webpage. 
 
 </br>
 
