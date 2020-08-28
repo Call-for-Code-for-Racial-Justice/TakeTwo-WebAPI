@@ -48,6 +48,31 @@ The API is used to fetch the defined categories of racial bias and serve them in
 
 </br>
 
+### Getting started 
+
+To run this API locally you will need to clone this repo. ``cd`` into the repo. 
+
+Run the following command to create a virtual environment:
+
+``` python3 -m venv env```
+
+Activate virtual environment:
+
+```source env/bin/activate```
+
+Install the packages needed from the requirements.txt file:
+
+```pip install requirements.txt```
+
+To run the API code:
+
+``cd taketwo-api``
+
+```uvicorn main:app --reload```
+
+
+### Deploy to Kubernetes
+
 
 ### Authors
 
