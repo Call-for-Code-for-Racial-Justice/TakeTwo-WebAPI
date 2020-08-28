@@ -50,13 +50,13 @@ The API is used to fetch the defined categories of racial bias and serve them in
 
 The database contains the following fields:
 
-- "_id": Database field (optional)
-- "_rev": Database field
-- "user_id": *The user ID*
-- "flagged_string": *The word of phrase that has been highlighted by the user.*
-- "category": *The category that has been selected for the type of racial bias present in the highlighted word or phrase.*
-- "info": *Additional information, context description provided by the user.* (optional)
-- "url": *The url from where the word or phrase was highlighted.*
+- ``"_id"``: Database field (optional)
+- ``"_rev"``: Database field
+- ``"user_id"``: *The user ID*
+- ``"flagged_string"``: *The word of phrase that has been highlighted by the user.*
+- ``"category"``: *The category that has been selected for the type of racial bias present in the highlighted word or phrase.*
+- ``"info"``: *Additional information, context description provided by the user.* (optional)
+- ``"url"``: *The url from where the word or phrase was highlighted.*
 
 
 </br>
@@ -76,7 +76,9 @@ Definitions of these categories can be found on the Take Two webpage.
 
 ## Getting started - How to guide
 
-To run this API locally you will need to clone this repo. ``cd`` into the repo. 
+To run this API locally you will need to clone this repo. Once you have done this,navigate into the repo:
+
+```cd taketwo-webapi```
 
 Run the following command to create a virtual environment:
 
@@ -134,3 +136,4 @@ For an overview of the available endpoints navigate to "https://localhost:8000/d
 - Offering Manager: Iain  McCombe
 
 ### Contributing
+See CONTRIBUTING.md
