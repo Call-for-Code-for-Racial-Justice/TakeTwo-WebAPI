@@ -63,7 +63,7 @@ There is a front-end HTML page that serves and example text editor.
 
 ### Take Two Architecture
 
-This API (highlighted in the following diagram) is part of the Call For Code Take Two MVP 1 delivery. This API is used to capture the data highlighted by users through the Take 2 Chrome extension tool.
+This API (highlighted in the following diagram) is part of the Call For Code Take Two Project. This API is used to capture the data highlighted by users through the Take 2 Chrome extension tool.
 
 ![](images/architecture-highlighted.png)
 
