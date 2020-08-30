@@ -1,5 +1,7 @@
 ![](images/logoblack.png)
 
+[TakeTwo Website](https://w3.ibm.com/w3publisher/take-two)
+
 ## Emb(race): Diverse Representation
 
 Technology has the power to drive action. And right now, a call to action is needed to eradicate racism. **Black lives matter.**
@@ -53,9 +55,9 @@ There are a number of other repositories related to this project:
 
 ## Technology Used
 
-This API is built using [Python](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), and [Docker](https://www.docker.com) (if running on a Kubernetes cluster).
+TakeTwo is built using open source technologies. The API is built using [Python](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), and [Docker](https://www.docker.com) (if running on a Kubernetes cluster).
 
-The data is sent to a backend database, in this example Cloudant, however you could also use CouchDB. 
+The data is sent to a backend database. For the purposes of our MVP we have used Cloudant, however you can swap this for CouchDB (or any other of your choice) by changing the credentials and use the appropriate library. 
 
 There is a front-end HTML page that serves and example text editor. 
 
