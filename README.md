@@ -59,9 +59,9 @@ There are a number of other repositories related to this project:
 
 TakeTwo is built using open source technologies. The API is built using [Python](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), and [Docker](https://www.docker.com) (if running on a Kubernetes cluster).
 
-The data is sent to a backend database. This database is used as a data source for the machine learning model. The production database is currently Cloudant (to deliver our initial MVP) and you can interact with the data via the live API running on an Openshift Kubernetes cluster. 
+The data is sent to a backend database. The code is set up to be able to run the API locally with a CouchDB backend database or IBM Cloudant database. 
 
-For development and testing, you can use CouchDB which is open source. To do this you will need to deploy a CouchDB docker image either locally or on a Kubernetes cluster. 
+To run with CouchDB, you will need to deploy a CouchDB docker image either locally or on a Kubernetes cluster. 
 
 There is a front-end HTML page that serves and example text editor. 
 
@@ -148,6 +148,12 @@ To push the image to Docker hub, run the following:
 ```docker push <dockerusername>/taketwo_api```
 
 </br>
+
+### Starting a CouchDB container
+
+To run the API with a CouchDB backend, start a couchDB container before running the main.py code.
+
+```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
 
 ### Use the API
 

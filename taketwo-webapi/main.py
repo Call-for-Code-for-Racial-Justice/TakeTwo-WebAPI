@@ -37,6 +37,14 @@ if creds:
     client = Cloudant.iam(username, apikey, url=url, connect=True)
     db = client.create_database(db_name, throw_on_exists=False)
 
+if db is None:
+    import couchdb
+    client = couchdb.Server('http://admin:password@localhost:5984/')
+    try: 
+        db = client.create(db_name)
+    except couchdb.PreconditionFailed:
+        db = client[db_name]
+
 
 class Flagged(BaseModel):
     _id: Optional[str]
