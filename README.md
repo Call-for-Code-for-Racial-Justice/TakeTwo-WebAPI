@@ -59,7 +59,7 @@ There are a number of other repositories related to this project:
 
 TakeTwo is built using open source technologies. The API is built using [Python](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), and [Docker](https://www.docker.com) (if running on a Kubernetes cluster).
 
-The data is sent to a backend database. The code is set up to be able to run the API locally with a CouchDB backend database or IBM Cloudant database. 
+The data is sent to a backend database. The code is set up to be able to run the API locally with a [CouchDB](https://couchdb.apache.org/) backend database or [IBM Cloudant](https://www.ibm.com/uk-en/cloud/cloudant) database. 
 
 To run with CouchDB, you will need to deploy a CouchDB docker image either locally or on a Kubernetes cluster. 
 
