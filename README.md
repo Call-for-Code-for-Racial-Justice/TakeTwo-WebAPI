@@ -137,6 +137,12 @@ Run the Python api code:
 
 </br>
 
+### Starting a CouchDB container
+
+To run the API with a CouchDB backend, start a couchDB container before running the main.py code.
+
+```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
+
 ### Deploy to Kubernetes
 
 There is already an [image](https://hub.docker.com/repository/docker/josiemundi/taketwo_v0.1) available in Docker hub for this API, which you can use to deploy to a Kubernetes cluster. Alternatively you can build your own using the Dockerfile in this repo. To build a new image, run the following command in a terminal window:
@@ -148,12 +154,6 @@ To push the image to Docker hub, run the following:
 ```docker push <dockerusername>/taketwo_api```
 
 </br>
-
-### Starting a CouchDB container
-
-To run the API with a CouchDB backend, start a couchDB container before running the main.py code.
-
-```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
 
 ### Use the API
 
