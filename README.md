@@ -126,13 +126,21 @@ Definitions of these categories can be found on the TakeTwo webpage.
 
 ## Getting started
 
-To run this API locally you will need to clone this repo. Once you have done this,navigate into the repo:
+#### Clone the TakeTwo repository
+
+To run this API locally you will need to clone this repo.
+
+```git clone https://github.com/embrace-call-for-code/taketwo-webapi.git```
+
+#### Install the Python prerequisites
+
+Navigate into the repo:
 
 ```cd taketwo-webapi```
 
 Run the following command to create a virtual environment:
 
-``` python3 -m venv env```
+```python3 -m venv env```
 
 Activate virtual environment:
 
@@ -140,23 +148,28 @@ Activate virtual environment:
 
 Install the packages needed from the requirements.txt file:
 
-```pip install requirements.txt```
+```pip install -r requirements.txt```
 
 Navigate to the folder which contains the API code:
 
-``cd taketwo-api``
+```cd taketwo-webapi```
+
+#### Start a CouchDB container
+Before launching the application, set the name of your CouchDB database.
+
+```export DBNAME=taketwodatabase```
+
+To run the API with a CouchDB backend, start a couchDB container before running the main.py code.
+
+```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
+
+#### Launch the application
 
 Run the Python api code:
 
 ```uvicorn main:app --reload```
 
 </br>
-
-### Starting a CouchDB container
-
-To run the API with a CouchDB backend, start a couchDB container before running the main.py code.
-
-```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
 
 ### Deploy to Kubernetes
 
@@ -174,11 +187,17 @@ To push the image to Docker hub, run the following:
 
 When the API is running, the main url will show an example text editor, which can be used to make requests to the backend data. You can type in the text box and then press check. Text that could be racially biased will be highlighted as shown in the following example.
 
+Open a browser to [http://localhost:8000](http://localhost:8000)
+
 </br>
 
 ![](images/api-example.png)
 
-For an overview of the available endpoints navigate to "https://localhost:8000/docs".
+### Review the TakeTwo OpenAPI documentation
+
+For an overview of the available endpoints navigate to [http://localhost:8000/docs](http://localhost:8000/docs)
+
+![TakeTwo Swagger Doc](images/api-swagger.png)
 
 ### Contributing
 
