@@ -197,7 +197,7 @@ Open a browser to [http://localhost:8000](http://localhost:8000)
 
 For an overview of the available endpoints navigate to [http://localhost:8000/docs](http://localhost:8000/docs)
 
-![TakeTwo Swagger Doc](images/api-swagger.png)
+![TakeTwo Swagger Doc](images/api-swaggerdoc.png)
 
 ### Contributing
 
