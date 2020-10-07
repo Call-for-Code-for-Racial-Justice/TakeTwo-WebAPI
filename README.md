@@ -220,6 +220,10 @@ We hope you will help us in this open source community effort!
 - Architect: Steve Uniack
 - Offering Manager: Iain McCombe
 
+## Documents
+
+[Media Representations Impact Black Men](https://www.opportunityagenda.org/explore/resources-publications/media-representations-impact-black-men/media-portrayals)
+
 ## Disclosures
 
 ## License
