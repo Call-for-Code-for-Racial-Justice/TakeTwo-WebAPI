@@ -1,20 +1,22 @@
-import os
+from dotenv import load_dotenv
+load_dotenv()
 
+import os
 import json
 
 from typing import Optional
 
-from fastapi import FastAPI
-
+from fastapi import FastAPI, Depends, FastAPI, HTTPException
 from pydantic import BaseModel
 
 from fastapi.responses import HTMLResponse
 
-# from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+import httpx
+import base64
 
-from cloudant.client import Cloudant
+import couchdb
 
-app = FastAPI()
 
 clear_token = os.getenv("CLEAR_TOKEN")
 db_name = os.getenv("DBNAME")
@@ -22,28 +24,72 @@ client = None
 db = None
 creds = None
 
-if "VCAP_SERVICES" in os.environ:
-    creds = json.loads(os.getenv("VCAP_SERVICES"))
-    print("Found VCAP_SERVICES")
-elif os.path.isfile("vcap-local.json"):
-    with open("vcap-local.json") as f:
-        creds = json.load(f)
-        print("Found local VCAP_SERVICES")
+app = FastAPI()
 
-if creds:
-    username = creds["username"]
-    apikey = creds["apikey"]
-    url = creds["url"]
-    client = Cloudant.iam(username, apikey, url=url, connect=True)
-    db = client.create_database(db_name, throw_on_exists=False)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-if db is None:
-    import couchdb
-    client = couchdb.Server('http://admin:password@localhost:5984/')
-    try: 
-        db = client.create(db_name)
-    except couchdb.PreconditionFailed:
-        db = client[db_name]
+
+def retrieve_token(username, password):
+
+    client_id = os.getenv("CLIENT_ID")
+    secret = os.getenv("SECRET")
+    url = os.getenv("OAUTH_SERVER_URL") + "/token"
+    grant_type = "password"
+
+    usrPass = client_id + ":" + secret
+    b64Val = base64.b64encode(usrPass.encode()).decode()
+    headers = {"accept": "application/json", "Authorization": "Basic %s" % b64Val}
+
+    data = {
+        "grant_type": grant_type,
+        "username": username,
+        "password": password,
+        "scope": "all",
+    }
+
+    response = httpx.post(url, headers=headers, data=data)
+
+    if response.status_code == httpx.codes.OK:
+        return response.json()
+    else:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+
+
+
+
+def validate(token: str = Depends(oauth2_scheme)):
+    res = validate_token_IBM(
+        token, os.getenv("OAUTH_SERVER_URL"), os.getenv("CLIENT_ID"), os.getenv("SECRET")
+    )
+
+
+def validate_token_IBM(token, authURL, clientId, clientSecret=Depends(oauth2_scheme)):
+    usrPass = clientId + ":" + clientSecret
+    b64Val = base64.b64encode(usrPass.encode()).decode()
+    # headers = {'accept': 'application/json', 'Authorization': 'Basic %s' % b64Val}
+    headers = {
+        "accept": "application/json",
+        "cache-control": "no-cache",
+        "content-type": "application/x-www-form-urlencoded",
+        "Authorization": "Basic %s" % b64Val,
+    }
+    data = {
+        "client_id": clientId,
+        "client_secret": clientSecret,
+        "token": token,
+    }
+    url = authURL + "/introspect"
+
+    response = httpx.post(url, headers=headers, data=data)
+
+    return response.status_code == httpx.codes.OK and response.json()["active"]
+
+
+client = couchdb.Server('http://admin:password@localhost:5984/')
+try: 
+    db = client.create(db_name)
+except couchdb.PreconditionFailed:
+    db = client[db_name]
 
 
 class Flagged(BaseModel):
@@ -64,33 +110,47 @@ def read_root():
     return open("template.html").read()
 
 
+# Get auth token
+@app.post("/token")
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    """
+    Gets a token from IBM APP ID, given a username and a password. Depends on OAuth2PasswordRequestForm.
+    Parameters
+    ----------
+    OAuth2PasswordRequestForm.form_data.username: str, required
+    OAuth2PasswordRequestForm.form_data.password: str, required
+    Returns
+    -------
+    token: str
+    """
+    # print(retrieve_token(form_data.username,form_data.password))
+    return retrieve_token(form_data.username, form_data.password)
+
+
 @app.get("/mark")
-def get_marks():
-    return list(map(lambda doc: doc, db))
+def get_marks(valid: bool = Depends(validate)):
+    return list(map(lambda item: dict(item.doc.items()), db.view('_all_docs',include_docs=True)))
 
 
 @app.post("/mark")
-def save_mark(item: Flagged):
+def save_mark(item: Flagged, valid: bool = Depends(validate)):
     data = item.dict()
     if client:
-        my_document = db.create_document(data)
-        data["_id"] = my_document["_id"]
-        return data
-    else:
-        print("No database")
-        return data
+        doc_id, doc_rev = db.save(data)
+        return doc_id
 
 
 @app.put("/mark/{_id}")
-def update_mark(_id: str, item: Flagged):
-    my_document = db[_id]
-    my_document["category"] = item.category
-    my_document.save()
+def update_mark(_id: str, item: Flagged, valid: bool = Depends(validate)):
+    doc = db[_id]
+    doc["category"] = item.category
+    db[doc.id] = doc
+    # my_document.save()
     return {"status": "success"}
 
 
 @app.delete("/mark")
-def delete_mark(_id: str):
+def delete_mark(_id: str, valid: bool = Depends(validate)):
     my_document = db[_id]
     my_document.delete()
     return {"status": "success"}
@@ -147,14 +207,29 @@ def read_categories():
 @app.put("/analyse")
 def analyse_text(text: Text):
     res = []
-    for doc in db:
+    for item in db.view('_all_docs',include_docs=True):
+        doc = item.doc
         if doc["flagged_string"] in text.content:
             res.append({"flag" : doc["flagged_string"], "category" : doc["category"], "info" : doc["info"]})
     return {"biased": res}
 
+@app.put("/check")
+def check_words(text: Text):
+    res = []
+    for item in db.view('_all_docs',include_docs=True):
+        doc = item.doc
+        if doc["category"] == "racial slur" and doc["flagged_string"].lower() in text.content.lower():
+            res.append({"flag" : doc["flagged_string"], "category" : doc["category"], "info" : doc["info"]})
+    
+    line_by_line = []
+    for i,l in enumerate(text.content.splitlines(),1):
+        for r in res:
+            if r["flag"].lower() in l.lower():
+                line_by_line.append({
+                    "line" : i,
+                    "word" : r["flag"],
+                    "additional_info": r["info"]
+                })
 
-# @app.post("/texts")
-# def post_texts():
+    return line_by_line
 
-# @app.get("/texts")
-# def get_texts():

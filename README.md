@@ -1,4 +1,4 @@
-![](images/logoblack.png)
+![](docs/assets/logoblack.png)
 
 [TakeTwo Website](https://w3.ibm.com/w3publisher/take-two)
 </br>
@@ -71,7 +71,7 @@ There is a front-end HTML page that serves and example text editor.
 
 This API (highlighted in the following diagram) is part of the Call For Code TakeTwo Project. This API is used to capture the data highlighted by users through the Take 2 Chrome extension tool.
 
-![](images/architecture-highlighted.png)
+![](docs/assets/architecture-highlighted.png)
 
 </br>
 
@@ -161,7 +161,7 @@ When the API is running, the main url will show an example text editor, which ca
 
 </br>
 
-![](images/api-example.png)
+![](docs/assets/api-example.png)
 
 For an overview of the available endpoints navigate to "https://localhost:8000/docs".
 
