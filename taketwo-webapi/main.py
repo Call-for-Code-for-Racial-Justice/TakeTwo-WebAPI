@@ -19,7 +19,12 @@ import couchdb
 
 
 clear_token = os.getenv("CLEAR_TOKEN")
-db_name = os.getenv("DBNAME")
+db_name = os.getenv("DB_NAME")
+db_host = os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
+db_username = os.getenv("DB_USERNAME")
+db_password = os.getenv("DB_PASSWORD")
+
 client = None
 db = None
 creds = None
@@ -85,7 +90,7 @@ def validate_token_IBM(token, authURL, clientId, clientSecret=Depends(oauth2_sch
     return response.status_code == httpx.codes.OK and response.json()["active"]
 
 
-client = couchdb.Server('http://admin:password@localhost:5984/')
+client = couchdb.Server(f'http://{db_username}:{db_password}@{db_host}:{db_port}/')
 try: 
     db = client.create(db_name)
 except couchdb.PreconditionFailed:

@@ -158,11 +158,28 @@ Navigate to the folder which contains the API code:
 #### Start a CouchDB container
 Before launching the application, set the name of your CouchDB database.
 
-```export DBNAME=taketwodatabase```
+```export DB_NAME=taketwodatabase```
 
 To run the API with a CouchDB backend, start a couchDB container before running the main.py code.
 
 ```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
+
+#### Configure the application
+Copy `.env.sample` file to `.env` file in the same directory. Fill out the CouchDB database and IBM App Id service credentials.
+
+```
+#CouchDB Credentials
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USERNAME=
+DB_PASSWORD=
+
+#IBM AppID Credentials
+CLIENT_ID=
+SECRET=
+OAUTH_SERVER_URL=
+```
 
 #### Launch the application
 
