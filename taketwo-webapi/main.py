@@ -17,6 +17,8 @@ import base64
 
 import couchdb
 
+import jwt
+
 
 clear_token = os.getenv("CLEAR_TOKEN")
 db_name = os.getenv("DB_NAME")
@@ -66,6 +68,7 @@ def validate(token: str = Depends(oauth2_scheme)):
     res = validate_token_IBM(
         token, os.getenv("OAUTH_SERVER_URL"), os.getenv("CLIENT_ID"), os.getenv("SECRET")
     )
+    return res
 
 
 def validate_token_IBM(token, authURL, clientId, clientSecret=Depends(oauth2_scheme)):
@@ -87,7 +90,10 @@ def validate_token_IBM(token, authURL, clientId, clientSecret=Depends(oauth2_sch
 
     response = httpx.post(url, headers=headers, data=data)
 
-    return response.status_code == httpx.codes.OK and response.json()["active"]
+    if response.status_code == httpx.codes.OK and response.json()["active"]:
+        return jwt.decode(token, options={"verify_signature": False})
+    else:
+        raise HTTPException(status_code=403, detail="Authorisation failure")
 
 
 client = couchdb.Server(f'http://{db_username}:{db_password}@{db_host}:{db_port}/')
@@ -133,41 +139,31 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
 
 @app.get("/mark")
-def get_marks(valid: bool = Depends(validate)):
+def get_marks(user: dict = Depends(validate)):
     return list(map(lambda item: dict(item.doc.items()), db.view('_all_docs',include_docs=True)))
 
 
 @app.post("/mark")
-def save_mark(item: Flagged, valid: bool = Depends(validate)):
+def save_mark(item: Flagged, user: dict = Depends(validate)):
+    item.user_id = user["sub"]
     data = item.dict()
-    if client:
-        doc_id, doc_rev = db.save(data)
-        return doc_id
+    _id, _ = db.save(data)
+    return data
 
 
 @app.put("/mark/{_id}")
-def update_mark(_id: str, item: Flagged, valid: bool = Depends(validate)):
+def update_mark(_id: str, item: Flagged, user: dict = Depends(validate)):
     doc = db[_id]
     doc["category"] = item.category
     db[doc.id] = doc
-    # my_document.save()
     return {"status": "success"}
 
 
 @app.delete("/mark")
-def delete_mark(_id: str, valid: bool = Depends(validate)):
+def delete_mark(_id: str, user: dict = Depends(validate)):
     my_document = db[_id]
     my_document.delete()
     return {"status": "success"}
-
-if os.path.isfile("vcap-local.json"):
-    @app.put("/clear_all")
-    def clear_all(confirm: str):
-        if confirm == clear_token:
-            for doc in db:
-                doc.delete()
-            return {"status": "success"}
-        return {"status": "failed"}
 
 
 @app.get("/categories")
@@ -196,7 +192,7 @@ def read_categories():
             "description": "To use tactics, whether by a person or entity, in order to gain more power by making a victim question their reality.  To deny or refuse to see racial bias, which may also include the act of convincing a person that an event/slur/idea is not racist or not as bad as one claims it to be through means of psychological manipulation."
         },
         {
-            "name": "racial slur",
+            "name": "racial-slur",
             "colour": "#FFB000",
             "description": "To insult, or use offensive or hurtful language designed to degrade a person because of their race or culture. This is intentional use of words or phrases to speak of or to members of ethnical groups in a derogatory manor. ",
         },
