@@ -94,6 +94,10 @@ Install the packages needed from the requirements.txt file:
 
 ```pip install -r requirements.txt```
 
+Navigate to the folder which contains the API code:
+
+```cd taketwo-webapi```
+
 #### Start a CouchDB container
 
 Before launching the application, set the name of your CouchDB database:
