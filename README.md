@@ -1,3 +1,4 @@
+![](docs/assets/logoblack.png)
 # TakeTwo Solution Starter
 TakeTwo provides a quick and simple tool to help detect and eliminate racial bias -- both overt and subtle -- in written content. This can assist content creators in proactively mitigating potential biases as they write. It can also be used by people to review written content on websites and social media for potential biases.
 
@@ -86,7 +87,7 @@ There is a front-end HTML page that serves and example text editor.
 
 This API (highlighted in the following diagram) is part of the Call For Code TakeTwo Project. This API is used to capture the data highlighted by users through the TakeTwo Chrome extension tool.
 
-![](images/architecture-highlighted.png)
+![](docs/assets/architecture-highlighted.png)
 
 </br>
 
@@ -157,11 +158,28 @@ Navigate to the folder which contains the API code:
 #### Start a CouchDB container
 Before launching the application, set the name of your CouchDB database.
 
-```export DBNAME=taketwodatabase```
+```export DB_NAME=taketwodatabase```
 
 To run the API with a CouchDB backend, start a couchDB container before running the main.py code.
 
 ```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
+
+#### Configure the application
+Copy `.env.sample` file to `.env` file in the same directory. Fill out the CouchDB database and IBM App Id service credentials.
+
+```
+#CouchDB Credentials
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USERNAME=
+DB_PASSWORD=
+
+#IBM AppID Credentials
+CLIENT_ID=
+SECRET=
+OAUTH_SERVER_URL=
+```
 
 #### Launch the application
 
@@ -191,7 +209,7 @@ Open a browser to [http://localhost:8000](http://localhost:8000)
 
 </br>
 
-![](images/api-example.png)
+![](docs/assets/api-example.png)
 
 ### Review the TakeTwo OpenAPI documentation
 
