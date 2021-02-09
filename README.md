@@ -14,7 +14,7 @@ There is a front-end HTML page that serves as an example text editor.
 
 This API (highlighted in the following diagram) is part of the Call for Code for Racial Justice TakeTwo Project. This API is used to capture the data highlighted by users through the TakeTwo Chrome extension tool.
 
-![](docs/assets/architecture-highlighted.png)
+![](https://raw.githubusercontent.com/Call-for-Code-for-Racial-Justice/TakeTwo/main/images/architecture-overview.png)
 
 </br>
 
@@ -55,11 +55,11 @@ Definitions of these categories can be found on the TakeTwo [webpage](https://gi
 ## Learning objectives
 
 In this tutorial, you will learn how to:
-- Clone the TakeTwo repository.
+- Clone the TakeTwo repositories.
 - Install the Python prerequisites.
 - Start a CouchDB container.
 - Launch the application.
-- Deploy to Kubernetes.
+- Deploy to Kubernetes (optionally).
 - Use the API.
 
 ## Prerequisites
@@ -78,13 +78,9 @@ Completing this tutorial should take about 15 minutes.
 
 To run this API locally you will need to clone this repo:
 
-```git clone https://github.com/embrace-call-for-code/taketwo-webapi.git```
+```git clone https://github.com/Call-for-Code-for-Racial-Justice/taketwo-webapi.git```
 
 #### Install the Python prerequisites
-
-Navigate into the repo:
-
-```cd taketwo-webapi```
 
 Run the following command to create a virtual environment:
 
@@ -103,7 +99,6 @@ Navigate to the folder which contains the API code:
 ```cd taketwo-webapi```
 
 #### Start a CouchDB container
-Before launching the application, set the name of your CouchDB database.
 
 Before launching the application, set the name of your CouchDB database:
 
@@ -138,11 +133,9 @@ Run the Python api code:
 
 </br>
 
-## Deploy to Kubernetes
+### Deploy to Kubernetes
 
-There is already an [image](https://hub.docker.com/repository/docker/josiemundi/taketwo_v0.1) available in Docker Hub for this API, which you can use to deploy to a Kubernetes cluster. Alternatively, you can build your own using the Dockerfile in this repo.
-
-To build a new image, run the following command in a terminal window:
+You can build your own using the Dockerfile in this repo. To build a new image, run the following command in a terminal window:
 
 ```docker build -t <dockerusername>/taketwo_api .```
 
@@ -153,9 +146,9 @@ To push the image to Docker Hub, run the following:
 
 </br>
 
-## Use the API
+### Use the API
 
-When the API is running, the main url will show an example text editor which can be used to make requests to the backend data. You can type in the text box and then press check. Text that could be racially biased will be highlighted as shown in the following example.
+When the API is running, the main url will show an example text editor, which can be used to make requests to the backend data. You can type in the text box and then press check. Text that could be racially biased will be highlighted as shown in the following example.
 
 Open a browser to [http://localhost:8000](http://localhost:8000)
 
@@ -163,9 +156,9 @@ Open a browser to [http://localhost:8000](http://localhost:8000)
 
 ![](docs/assets/api-example.png)
 
-## Review the TakeTwo OpenAPI documentation
+### Review the TakeTwo OpenAPI documentation
 
-For an overview of the available endpoints, navigate to [http://localhost:8000/docs](http://localhost:8000/docs)
+For an overview of the available endpoints navigate to [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ![TakeTwo Swagger Doc](images/api-swaggerdoc.png)
 
@@ -176,26 +169,19 @@ We welcome contributions! For details on how to contributing please read the [CO
 This project is still very much a work in progress, however our hope for the future is that this is a step towards a more informed media culture that is more aware of racial bias in media content. We hope this can be built out so that it can be used in a range of areas; news, social media, forums, code etc.
 
 We also hope to expand the project to enable detection of racial bias in audio and video in the future.
-Before launching the application, set the name of your CouchDB database.
 
 We hope you will help us in this open source community effort!
 
-## Authors
+## Summary
 
-- User Researcher: Anna Rodriguez
-- Designers: Naagma Timakondu, Sbusiso Mkhombe
-- Tester: Merlina Escorcia
-- Generalist: Ashley West, Jashu Gorsia, Yolanda Rabun
-- Data Scientists: Naoki Abe, Alayt Issak
-- Lead Developer: Johanna Saladas
-- Architect: Steve Uniack
-- Offering Manager: Iain McCombe
+Once the TakeTwo database and Python service is running, the TakeTwo endpoints can be called to get, save, delete, update data in the database. New text can be analyzed for potentially racially biased terminology.
 
-## Documents
+## Related Links
 
-[Media Representations Impact Black Men](https://www.opportunityagenda.org/explore/resources-publications/media-representations-impact-black-men/media-portrayals)
+There are a number of other components related to this project:
 
-## Disclosures
+- [TakeTwo Data Science](https://github.com/Call-for-Code-for-Racial-Justice/taketwo-datascience/blob/main/README.md) - Contains data science work for building and training the model.
+- [TakeTwo Marker Chrome Extenstion](https://github.com/Call-for-Code-for-Racial-Justice/taketwo-datascience/blob/main/README.md) - Code for the Chrome extension used to crowdsource data for training the ML model.
 
 ## License
 
