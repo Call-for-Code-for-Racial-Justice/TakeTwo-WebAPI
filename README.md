@@ -1,8 +1,10 @@
 # TakeTwo Solution Starter - WebAPI Backend
 
-The TakeTwo Web API is used to take facilitate the centralization of data, such as that gathered through the [TakeTwo chrome extension](https://github.com/Call-for-Code-for-Racial-Justice/taketwo-marker-chromeextension) and populate a backend database. This data can then be used to train a model to predict racially biased language. The TakeTwo API also allows a content creator to scan their writing for potentially racially biased language. The API is built using Python, [FastAPI](https://fastapi.tiangolo.com/), and [Docker](https://www.docker.com) (if running on a Kubernetes cluster).
+The TakeTwo Web API is used to take facilitate the centralization of data, such as that gathered through the [TakeTwo chrome extension](https://github.com/Call-for-Code-for-Racial-Justice/taketwo-marker-chromeextension) and populate a backend database. This data can then be used to train a model to predict racially biased language. The TakeTwo API also allows a content creator to scan their writing for potentially racially biased language. 
 
-The racially biased terms are vetted and loaded into a backend database. The code is set up to run the API locally with a [CouchDB](https://couchdb.apache.org/) backend database or [IBM Cloudant](https://www.ibm.com/uk-en/cloud/cloudant) database.
+The API is built on open source technologies like [Python](https://www.python.org/), [FastAPI](https://fastapi.tiangolo.com/), [Swagger](https://swagger.io/) and [OAuth](https://oauth.net/) and can be deployed on open source container platform like [Kubernetes](https://kubernetes.io/).
+
+The racially biased terms are loaded into a backend database. The code is set up to run the API locally with a [CouchDB](https://couchdb.apache.org/) backend database or [IBM Cloudant](https://www.ibm.com/uk-en/cloud/cloudant) database.
 
 To run with CouchDB, you will need to deploy a CouchDB docker image either locally or on a Kubernetes cluster.
 
