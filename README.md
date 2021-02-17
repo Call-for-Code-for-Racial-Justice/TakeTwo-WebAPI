@@ -158,7 +158,7 @@ With the API running, you can also install the TakeTwo Chrome extension and this
 
 For an overview of the available endpoints navigate to [http://localhost:8000/docs](http://localhost:8000/docs)
 
-![TakeTwo Swagger Doc](images/api-swaggerdoc.png)
+![TakeTwo Swagger Doc](docs/assets/api-swaggerdoc.png)
 
 ### Contributing
 
