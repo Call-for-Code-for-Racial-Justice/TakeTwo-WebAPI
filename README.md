@@ -10,14 +10,6 @@ To run with CouchDB, you will need to deploy a CouchDB Docker image either local
 
 There is a front-end HTML page that serves as an example text editor.
 
-## Diagrams
-
-### TakeTwo Architecture
-
-This API (highlighted in the following diagram) is part of the Call for Code for Racial Justice TakeTwo Project. This API is used to capture the data highlighted by users through the TakeTwo Chrome extension tool.
-
-![](https://raw.githubusercontent.com/Call-for-Code-for-Racial-Justice/TakeTwo/main/images/architecture-overview.png)
-
 </br>
 
 ### Description of TakeTwo API
