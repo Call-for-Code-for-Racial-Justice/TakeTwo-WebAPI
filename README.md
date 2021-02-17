@@ -150,7 +150,7 @@ Open a browser to [http://localhost:8000](http://localhost:8000)
 
 </br>
 
-![](docs/assets/api-example.png)
+![](docs/assets/take-two-text-editor.png)
 
 With the API running, you can also install the TakeTwo Chrome extension and this will enable data capture via a browser. 
 
