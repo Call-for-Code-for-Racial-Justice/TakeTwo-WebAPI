@@ -162,7 +162,7 @@ def update_mark(_id: str, item: Flagged, user: dict = Depends(validate)):
 @app.delete("/mark")
 def delete_mark(_id: str, user: dict = Depends(validate)):
     my_document = db[_id]
-    my_document.delete()
+    db.delete(my_document)
     return {"status": "success"}
 
 
