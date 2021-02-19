@@ -183,4 +183,4 @@ There are a number of other components related to this project:
 
 ## License
 
-This solution starter is made available under the [MIT License](LICENSE).
+This solution starter is made available under the [Apache 2 License](LICENSE).
