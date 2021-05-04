@@ -27,4 +27,4 @@ Unsure where to start? You can start by looking through these beginner and help-
 
 ## License
 
-By contributing to this project, you agree that your contributions will be licensed under it's MIT license. 
+By contributing to this project, you agree that your contributions will be licensed under its Apache 2 license. 
