@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Community](https://img.shields.io/badge/Join-Community-blue.svg)](https://developer.ibm.com/callforcode/racial-justice/get-started/)
+
 # TakeTwo Solution Starter - WebAPI Backend
 
 The TakeTwo Web API is used to take facilitate the centralization of data, such as that gathered through the [TakeTwo Chrome extension](https://github.com/Call-for-Code-for-Racial-Justice/taketwo-marker-chromeextension) and populate a backend database. This data can then be used to train a model to predict racially biased language. The TakeTwo API also allows a content creator to scan their writing for potentially racially biased language. 
