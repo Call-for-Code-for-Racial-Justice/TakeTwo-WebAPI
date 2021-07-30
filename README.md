@@ -100,9 +100,9 @@ Before launching the application, set the name of your CouchDB database:
 
 ```export DBNAME=taketwodatabase```
 
-To run the API with a CouchDB backend, start a couchDB container before running the main.py code:
+To run the API with a CouchDB backend, start a couchDB container before running the main.py code. The following command provides a username and password and also mounts the `data` directory where CouchDB by default will write its data files.
 
-```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
+```docker run -p 5984:5984 -d -v ${PWD}/data:/opt/couchdb/data -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
 
 The Couch DB web interface will be available at http://localhost:5984. 
 
