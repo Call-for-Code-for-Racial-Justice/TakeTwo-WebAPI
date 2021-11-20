@@ -21,13 +21,13 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Docker Build
-        run: docker build -t taketwo_api .
+      run: docker build -t taketwo_api .
 
     - name: Docker Test
-        run: |
-          docker run --rm --name taketwo_api-test -d taketwo_api
-          sleep 5
-          STATUS_CODE=$(docker exec taketwo_api-test curl -s -o /dev/null -w "%{http_code}" localhost:8000)
-          docker stop taketwo_api-test
-          echo $STATUS_CODE | grep -q 200
+      run: |
+        docker run --rm --name taketwo_api-test -d taketwo_api
+        sleep 5
+        STATUS_CODE=$(docker exec taketwo_api-test curl -s -o /dev/null -w "%{http_code}" localhost:8000)
+        docker stop taketwo_api-test
+        echo $STATUS_CODE | grep -q 200
 
