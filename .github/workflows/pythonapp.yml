@@ -20,18 +20,13 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run tests
-      env:
-        DB_HOST: ${{secrets.DB_HOST}}
-        DB_PORT: ${{secrets.DB_PORT}}
-        DB_NAME: ${{secrets.DB_NAME}}
-        DB_USERNAME: ${{secrets.DB_USERNAME}}
-        DB_PASSWORD: ${{secrets.DB_PASSWORD}}
-        CLIENT_ID: ${{secrets.CLIENT_ID}}
-        SECRET: ${{secrets.SECRET}}
-        OAUTH_SERVER_URL: ${{secrets.OAUTH_SERVER_URL}}
-
       run: |
-        export DBNAME=taketwodatabase
+        export DB_NAME=taketwodatabase
+        export DB_HOST=localhost
+        export DB_PORT=5984
+        export DB_USERNAME=admin
+        export DB_PASSWORD=password
+
         docker run --rm -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb
         sleep 5
         pytest taketwo-webapi
