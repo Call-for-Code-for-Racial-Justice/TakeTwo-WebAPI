@@ -76,7 +76,8 @@ Completing this tutorial should take about 15 minutes.
 
 #### Clone the TakeTwo repository
 
-To run this API locally you will need to clone this repo:
+To run this API locally you will need to clone this repo. 
+If you plan on making contributions to the project, make sure to fork the repo and clone your fork instead (see CONTRIBUTING.md for more info):
 
 ```git clone https://github.com/Call-for-Code-for-Racial-Justice/taketwo-webapi.git```
 
@@ -112,7 +113,6 @@ The Couch DB web interface will be available at http://localhost:5984.
 
 #### Configure your IBM App Id
 - See the following video for how to set it up https://www.loom.com/share/937c89f086aa420597cc55b97a987031
-- You'll need the client_id, secret, and oauth_server_url for the next step
 
 #### Configure the application
 Copy `.env.sample` file to `.env` file in the same directory. Fill out the CouchDB database and IBM App Id service credentials.
@@ -130,6 +130,10 @@ CLIENT_ID=
 SECRET=
 OAUTH_SERVER_URL=
 ```
+- The DB_HOST should be localhost
+- For the port, username, and password, use what you provided in the "docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb" step
+- For the name, use what you provided in the "export DBNAME=taketwodatabase" step
+- You'll need to get the AppID Credentials from the App ID you created in the previous step
 
 #### Launch the application
 
