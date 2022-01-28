@@ -62,7 +62,11 @@ In this tutorial, you will learn how to:
 
 To complete the steps in this tutorial you need:
 - Install Python3
+- Install Python3 dev kit
+- Install gcc (c compiler)
+- Install wheel
 - Install Docker
+- A non-Windows OS (some of the libraries aren't supported on Windows)
 
 ## Estimated time
 
@@ -105,6 +109,10 @@ To run the API with a CouchDB backend, start a couchDB container before running 
 ```docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb```
 
 The Couch DB web interface will be available at http://localhost:5984. 
+
+#### Configure your IBM App Id
+- See the following video for how to set it up https://www.loom.com/share/937c89f086aa420597cc55b97a987031
+- You'll need the client_id, secret, and oauth_server_url for the next step
 
 #### Configure the application
 Copy `.env.sample` file to `.env` file in the same directory. Fill out the CouchDB database and IBM App Id service credentials.
