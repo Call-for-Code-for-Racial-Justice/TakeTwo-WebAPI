@@ -66,7 +66,8 @@ To complete the steps in this tutorial you need:
 - Install gcc (c compiler)
 - Install wheel
 - Install Docker
-- A non-Windows OS (some of the libraries aren't supported on Windows)
+- A non-Windows OS. The following libraries aren't supported on Windows
+	- uvloop https://uvloop.readthedocs.io/
 
 ## Estimated time
 
