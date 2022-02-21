@@ -66,8 +66,6 @@ To complete the steps in this tutorial you need:
 - Install gcc (c compiler)
 - Install wheel
 - Install Docker
-- A non-Windows OS. The following libraries aren't supported on Windows
-	- uvloop https://uvloop.readthedocs.io/
 
 ## Estimated time
 
@@ -131,10 +129,9 @@ CLIENT_ID=
 SECRET=
 OAUTH_SERVER_URL=
 ```
-- The DB_HOST should be localhost
-- For the port, username, and password, use what you provided in the "docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb" step
-- For the name, use what you provided in the "export DBNAME=taketwodatabase" step
-- You'll need to get the AppID Credentials from the App ID you created in the previous step
+- DB_HOST: localhost if running locally
+- DB_PORT, DB_USERNAME, DB_PASSWORD: use what you provided in the "docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb" step
+- DBNAME: taketwodatabase
 
 #### Launch the application
 
