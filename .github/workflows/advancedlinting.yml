@@ -1,4 +1,4 @@
-on: pull_request
+on: [push, pull_request]
 
 jobs:
   example:
@@ -8,10 +8,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Lint
-        uses: gabriel-milan/action-pylint@v1
-        with:
+      - name: Super-Linter
+        uses: github/super-linter@v4.9.0
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} # GitHub token
-          path: "./*.py" # Glob pattern for files to lint
-          fail: true # Fail the action if pylint errors are found
-          pr-message: true # Send a PR message if pylint errors are found
