@@ -5,13 +5,10 @@ jobs:
     name: Python linting
     runs-on: ubuntu-latest 
     steps:
-        - uses: actions/checkout@v2  
-        - name: Python Linter
-          uses: sunnysid3up/python-linter@master
+        - uses: actions/checkout@v2
           with:
-            source: "taketwo-webapi"
-            strict: "medium"
-            mypy-options: ""
-            pylint-options: ""
-            isort-options: "-w 100"
-            django: false
+              fetch-depth: 0 
+        - name: Install pylint
+          run: pip install pylint
+        - name: Run pylint on all .py files
+          run: pylint $(git ls-files '*.py')
