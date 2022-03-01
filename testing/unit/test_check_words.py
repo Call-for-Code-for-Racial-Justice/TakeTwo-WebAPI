@@ -3,27 +3,21 @@ import sys
 sys.path.append('../../taketwo-webapi')
 sys.path.append('../util')
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import patch
 
 from main import check_words
-from main import db
 from main import Text
-from couchdb.client import Document
-from couchdb.client import Row
+
+from mock_db_util import getRow
+from mock_db_util import setupMocks
 
 class TestCheckWords(unittest.TestCase):
 
-    def test_no_text_provided(self):
-        firstDoc = Document()
-        firstDoc["flagged_string"] = "bad_string"
-        firstDoc["category"] = "racial slur"
-        firstDoc["info"] = "the_info"
-        firstRow = Row()
-        firstRow['doc'] = firstDoc
+    @patch('main.getDb')
+    def test_no_text_provided(self, getDbMock):
+        firstRow = getRow("bad_string", "racial slur", "the_info")
 
-        mockDbViewResults = MagicMock()
-        mockDbViewResults.__iter__ = MagicMock(return_value=iter([firstRow]))
-        db.view = MagicMock(return_value=mockDbViewResults)
+        setupMocks(getDbMock, [firstRow])
 
         data = {'content': ''}
         text = Text(**data)
@@ -32,17 +26,11 @@ class TestCheckWords(unittest.TestCase):
         expected = []
         assert output == expected, "Actual: " + str(output) + " Expected: " + str(expected)
 
-    def test_single_flagged_string_in_content(self):
-        firstDoc = Document()
-        firstDoc["flagged_string"] = "bad_string"
-        firstDoc["category"] = "racial slur"
-        firstDoc["info"] = "the_info"
-        firstRow = Row()
-        firstRow['doc'] = firstDoc
+    @patch('main.getDb')
+    def test_single_flagged_string_in_content(self,getDbMock):
+        firstRow = getRow("bad_string", "racial slur", "the_info")
 
-        mockDbViewResults = MagicMock()
-        mockDbViewResults.__iter__ = MagicMock(return_value=iter([firstRow]))
-        db.view = MagicMock(return_value=mockDbViewResults)
+        setupMocks(getDbMock, [firstRow])
 
         data = {'content': 'bad_string'}
         text = Text(**data)
@@ -51,17 +39,11 @@ class TestCheckWords(unittest.TestCase):
         expected = [{"line":1, "word":"bad_string", "additional_info":"the_info"}]
         assert output == expected, "Actual: " + str(output) + " Expected: " + str(expected)
 
-    def test_single_flagged_string_and_valid_string_in_content(self):
-        firstDoc = Document()
-        firstDoc["flagged_string"] = "bad_string"
-        firstDoc["category"] = "racial slur"
-        firstDoc["info"] = "the_info"
-        firstRow = Row()
-        firstRow['doc'] = firstDoc
+    @patch('main.getDb')
+    def test_single_flagged_string_and_valid_string_in_content(self,getDbMock):
+        firstRow = getRow("bad_string", "racial slur", "the_info")
 
-        mockDbViewResults = MagicMock()
-        mockDbViewResults.__iter__ = MagicMock(return_value=iter([firstRow]))
-        db.view = MagicMock(return_value=mockDbViewResults)
+        setupMocks(getDbMock, [firstRow])
 
         data = {'content': 'bad_string\nokay_string'}
         text = Text(**data)
@@ -70,30 +52,14 @@ class TestCheckWords(unittest.TestCase):
         expected = [{"line":1, "word":"bad_string", "additional_info":"the_info"}]
         assert output == expected, "Actual: " + str(output) + " Expected: " + str(expected)
 
-    def test_multiple_flagged_strings_existing_records(self):
-        firstDoc = Document()
-        firstDoc["flagged_string"] = "bad_string"
-        firstDoc["category"] = "racial slur"
-        firstDoc["info"] = "the_info"
-        firstRow = Row()
-        firstRow['doc'] = firstDoc
+    @patch('main.getDb')
+    def test_multiple_flagged_strings_existing_records(self,getDbMock):
 
-        secondDoc = Document()
-        secondDoc["flagged_string"] = "bad_string_2"
-        secondDoc["category"] = "racial slur"
-        secondDoc["info"] = "the_info_2"
-        secondRow = Row()
-        secondRow['doc'] = secondDoc
+        firstRow = getRow("bad_string", "racial slur", "the_info")
+        secondRow = getRow("bad_string_2", "racial slur", "the_info_2")
+        thirdRow = getRow("biased_thing", "other", "the_info_3")
 
-        thirdDoc = Document()
-        thirdDoc["flagged_string"] = "biased_thing"
-        thirdDoc["category"] = "other"
-        thirdDoc["info"] = "the_info_3"
-        thirdRow = Row()
-        thirdRow['doc'] = thirdDoc
-        mockDbViewResults = MagicMock()
-        mockDbViewResults.__iter__ = MagicMock(return_value=iter([firstRow, secondRow, thirdRow]))
-        db.view = MagicMock(return_value=mockDbViewResults)
+        setupMocks(getDbMock, [firstRow, secondRow, thirdRow])
 
         data = {'content': 'bad_string\nbad_string_2'}
         text = Text(**data)

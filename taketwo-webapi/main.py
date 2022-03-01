@@ -28,7 +28,6 @@ db_username = os.getenv("DB_USERNAME")
 db_password = os.getenv("DB_PASSWORD")
 
 client = None
-db = None
 creds = None
 
 app = FastAPI()
@@ -97,11 +96,12 @@ def validate_token_IBM(token, authURL, clientId, clientSecret=Depends(oauth2_sch
 
 
 client = couchdb.Server(f'http://{db_username}:{db_password}@{db_host}:{db_port}/')
-try: 
-    db = client.create(db_name)
-except couchdb.PreconditionFailed:
-    db = client[db_name]
 
+def getDb():
+    try: 
+        return client.create(db_name)
+    except couchdb.PreconditionFailed:
+        return client[db_name]
 
 class Flagged(BaseModel):
     _id: Optional[str]
@@ -140,11 +140,13 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
 @app.get("/mark")
 def get_marks(user: dict = Depends(validate)):
+    db = getDb()
     return list(map(lambda item: dict(item.doc.items()), db.view('_all_docs',include_docs=True)))
 
 
 @app.post("/mark")
 def save_mark(item: Flagged, user: dict = Depends(validate)):
+    db = getDb()
     item.user_id = user["sub"]
     data = item.dict()
     _id, _ = db.save(data)
@@ -153,6 +155,7 @@ def save_mark(item: Flagged, user: dict = Depends(validate)):
 
 @app.put("/mark/{_id}")
 def update_mark(_id: str, item: Flagged, user: dict = Depends(validate)):
+    db = getDb()
     doc = db[_id]
     doc["category"] = item.category
     db[doc.id] = doc
@@ -161,6 +164,7 @@ def update_mark(_id: str, item: Flagged, user: dict = Depends(validate)):
 
 @app.delete("/mark")
 def delete_mark(_id: str, user: dict = Depends(validate)):
+    db = getDb()
     my_document = db[_id]
     db.delete(my_document)
     return {"status": "success"}
@@ -207,6 +211,7 @@ def read_categories():
 
 @app.put("/analyse")
 def analyse_text(text: Text):
+    db = getDb()
     res = []
     for item in db.view('_all_docs',include_docs=True):
         doc = item.doc
@@ -217,6 +222,7 @@ def analyse_text(text: Text):
 @app.put("/check")
 def check_words(text: Text):
     res = []
+    db = getDb()
     for item in db.view('_all_docs',include_docs=True):
         doc = item.doc
         if doc["category"] == "racial slur" and doc["flagged_string"].lower() in text.content.lower():
