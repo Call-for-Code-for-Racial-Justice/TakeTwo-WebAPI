@@ -11,7 +11,7 @@ from main import Text
 from couchdb.client import Document
 from couchdb.client import Row
 
-class TestTakeTwoWebApi(unittest.TestCase):
+class TestAnalyseText(unittest.TestCase):
 
     def test_multiple_items_with_flagged_string(self):
         firstDoc = Document()
@@ -59,17 +59,22 @@ class TestTakeTwoWebApi(unittest.TestCase):
                         [{"flag": "bad_string", "category": "the_category", "info": "the_info"}]}
         assert output == expected, "Actual: " + str(output) + " Expected: " + str(expected)
 
-    def test_no_items_in_db(self):
+    def test_no_text_provided(self):
+        firstDoc = Document()
+        firstDoc["flagged_string"] = "bad_string"
+        firstDoc["category"] = "the_category"
+        firstDoc["info"] = "the_info"
+        firstRow = Row()
+        firstRow['doc'] = firstDoc
         mockDbViewResults = MagicMock()
-        mockDbViewResults.__iter__ = MagicMock(return_value=iter([]))
+        mockDbViewResults.__iter__ = MagicMock(return_value=iter([firstRow]))
         db.view = MagicMock(return_value=mockDbViewResults)
 
-        data = {'content': 'bad_string'}
+        data = {'content': ''}
         text = Text(**data)
         output = analyse_text(text)
 
-        expected = {"biased": 
-                        []}
+        expected = {"biased": []}
         assert output == expected, "Actual: " + str(output) + " Expected: " + str(expected)
 
 if __name__ == '__main__':
