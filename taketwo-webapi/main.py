@@ -225,7 +225,7 @@ def check_words(text: Text):
     db = getDb()
     for item in db.view('_all_docs',include_docs=True):
         doc = item.doc
-        if doc["category"] == "racial slur" and doc["flagged_string"].lower() in text.content.lower():
+        if doc["category"] == "racial-slur" and doc["flagged_string"].lower() in text.content.lower():
             res.append({"flag" : doc["flagged_string"], "category" : doc["category"], "info" : doc["info"]})
     
     line_by_line = []

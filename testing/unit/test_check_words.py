@@ -15,7 +15,7 @@ class TestCheckWords(unittest.TestCase):
 
     @patch('main.getDb')
     def test_no_text_provided(self, getDbMock):
-        firstRow = getRow("bad_string", "racial slur", "the_info")
+        firstRow = getRow("bad_string", "racial-slur", "the_info")
 
         setupMocks(getDbMock, [firstRow])
 
@@ -28,7 +28,7 @@ class TestCheckWords(unittest.TestCase):
 
     @patch('main.getDb')
     def test_single_flagged_string_in_content(self,getDbMock):
-        firstRow = getRow("bad_string", "racial slur", "the_info")
+        firstRow = getRow("bad_string", "racial-slur", "the_info")
 
         setupMocks(getDbMock, [firstRow])
 
@@ -41,7 +41,7 @@ class TestCheckWords(unittest.TestCase):
 
     @patch('main.getDb')
     def test_single_flagged_string_and_valid_string_in_content(self,getDbMock):
-        firstRow = getRow("bad_string", "racial slur", "the_info")
+        firstRow = getRow("bad_string", "racial-slur", "the_info")
 
         setupMocks(getDbMock, [firstRow])
 
@@ -55,8 +55,8 @@ class TestCheckWords(unittest.TestCase):
     @patch('main.getDb')
     def test_multiple_flagged_strings_existing_records(self,getDbMock):
 
-        firstRow = getRow("bad_string", "racial slur", "the_info")
-        secondRow = getRow("bad_string_2", "racial slur", "the_info_2")
+        firstRow = getRow("bad_string", "racial-slur", "the_info")
+        secondRow = getRow("bad_string_2", "racial-slur", "the_info_2")
         thirdRow = getRow("biased_thing", "other", "the_info_3")
 
         setupMocks(getDbMock, [firstRow, secondRow, thirdRow])
