@@ -7,10 +7,9 @@ sys.path.append('../../taketwo-webapi')
 sys.path.append('../util')
 from main import app
 from main import validate
-from main import db
+from main import getDb
 from fastapi.testclient import TestClient
-from testutil import comparePayloads
-import unittest
+from util.assert_util import comparePayloads
 
 def override_validate():
     return {"sub": 'test'}
@@ -36,7 +35,7 @@ def test_save_mark():
     assert resp_body['url'] == 'example.com', "Unexpected url. Was: " + resp_body['url']
 
     #make sure payload stored properly
-    storedPayload = db.get(resp_body["_id"])
+    storedPayload = getDb().get(resp_body["_id"])
     comparePayloads(payload, storedPayload)
     
     # print response full body as text

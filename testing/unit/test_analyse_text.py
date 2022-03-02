@@ -3,13 +3,13 @@ import sys
 sys.path.append('../../taketwo-webapi')
 sys.path.append('../util')
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from main import analyse_text
 from main import Text
 
-from mock_db_util import getRow
-from mock_db_util import setupMocks
+from util.mock_db_util import getRow
+from util.mock_db_util import setupMocks
 
 class TestAnalyseText(unittest.TestCase):
 
