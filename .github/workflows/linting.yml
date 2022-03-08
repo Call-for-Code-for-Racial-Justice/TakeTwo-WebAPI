@@ -1,0 +1,16 @@
+on: [push, pull_request]
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    name: Executes Linting
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v4.9.0
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
