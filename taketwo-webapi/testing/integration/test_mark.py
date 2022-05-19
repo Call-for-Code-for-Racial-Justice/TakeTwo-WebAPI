@@ -1,10 +1,6 @@
 import requests
-#example api test
-
 import json
 import sys
-#sys.path.append('../../taketwo-webapi')
-#sys.path.append('../util')
 from main import app
 from main import validate
 from main import getDb
