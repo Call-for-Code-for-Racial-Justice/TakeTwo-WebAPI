@@ -1,13 +1,12 @@
-import requests
-# example api test
-
+from fastapi.testclient import TestClient
+from main import app
 import json
 
-apiurl = 'https://localhost:8000'
+client = TestClient(app)
 
 
 def test_post_headers_body_json():
-    url = apiurl + '/mark'
+    url = '/mark'
 
     # Additional headers.
     headers = {'Content-Type': 'application/json'}
@@ -16,13 +15,12 @@ def test_post_headers_body_json():
     payload = {'user_id': "test", 'flagged_string': "test string", 'category': "stereotyping", 'info': "none",
                'url': "example.com"}
 
-    # convert dict to json by json.dumps() for body data.
-    resp = requests.post(url, headers=headers, data=json.dumps(payload, indent=4))
+    resp = client.post(url, headers=headers, json=payload)
 
     # Validate response headers and body contents, e.g. status code.
     assert resp.status_code == 200
     resp_body = resp.json()
-    assert resp_body['url'] == url
+    assert resp_body['url'] == 'example.com'
 
     # print response full body as text
-    print(resp.text)
+    #print(resp.text)

@@ -8,8 +8,8 @@ from unittest.mock import patch
 from main import check_words
 from main import Text
 
-from util.mock_db_util import getRow
-from util.mock_db_util import setupMocks
+from testing.unit.util.mock_db_util import getRow
+from testing.unit.util.mock_db_util import setupMocks
 
 class TestCheckWords(unittest.TestCase):
 
