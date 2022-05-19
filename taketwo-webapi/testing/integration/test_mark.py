@@ -1,15 +1,11 @@
 import requests
-#example api test
-
 import json
 import sys
-sys.path.append('../../taketwo-webapi')
-sys.path.append('../util')
 from main import app
 from main import validate
 from main import getDb
 from fastapi.testclient import TestClient
-from util.assert_util import comparePayloads
+from testing.integration.util.assert_util import comparePayloads
 
 def override_validate():
     return {"sub": 'test'}
